@@ -8,8 +8,6 @@
        и если он уменьшается больше чем можно, то вызывается исключение
 """
 
-EBAY_TITLE = 'eBay'
-
 
 class BankAccount:
     min_balance = -100
