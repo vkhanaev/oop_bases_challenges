@@ -10,7 +10,7 @@
        меньше чем текущая дата - то is_available должен возвращать False. Используйте super() для этого.
     3. Создайте экземпляры каждого из двух классов и вызовите у них все доступные методы
 """
-from datetime import datetime
+import datetime
 
 
 class Product:
@@ -26,8 +26,24 @@ class Product:
 
 
 class FoodProduct(Product):
-    pass  # код писать тут
+    def __init__(self, title, quantity, expiration_date):
+        super().__init__(title, quantity)
+        self.expiration_date = expiration_date
+
+    def get_full_info(self):
+        return f'Product {self.title}, {self.quantity} in stock, expiration_date: {self.expiration_date}.'
+
+    def is_available(self):
+        if self.expiration_date < datetime.date.today():
+            return False
+        return super().is_available()
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    product = Product("Table", 5)
+    print(product.get_full_info())
+    print(product.is_available())
+
+    food = FoodProduct("Lemon", 15, datetime.date(2023, 10, 21))
+    print(food.get_full_info())
+    print(food.is_available())
