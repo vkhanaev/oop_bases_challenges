@@ -4,13 +4,14 @@
 Задания:
     1. Создайте класс User и перенесите всю логику работы с пользователем туда.
 """
+import dataclasses
 
 
+@dataclasses.dataclass
 class User:
-    def __init__(self, username: str, user_id: int, name: str):
-        self.username = username
-        self.user_id = user_id
-        self.name = name
+    username: str
+    user_id: int
+    name: str
 
     def make_username_capitalized(self):
         return self.username.capitalize()

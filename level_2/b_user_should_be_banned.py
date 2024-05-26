@@ -6,15 +6,16 @@
     2. Добавьте ему метод should_be_banned, который проверяет, должен ли быть пользователь забанен.
        Пользователя стоит забанить, если его фамилия находится в SURNAMES_TO_BAN.
 """
+import dataclasses
 
 SURNAMES_TO_BAN = ['Vaughn', 'Wilhelm', 'Santaros', 'Porter', 'Smith']
 
 
+@dataclasses.dataclass
 class User:
-    def __init__(self, name: str, lastname: str, age: int):
-        self.name = name
-        self.lastname = lastname
-        self.age = age
+    name: str
+    lastname: str
+    age: int
 
     def should_be_banned(self) -> bool:
         return self.lastname in SURNAMES_TO_BAN
