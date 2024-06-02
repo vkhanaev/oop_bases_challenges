@@ -9,8 +9,13 @@
 
 
 class Product:
-    pass  # код писать тут
+    def __init__(self, name: str, description: str, price: float, weight: int):
+        self.name = name
+        self.description = description
+        self.price = price
+        self.weight = weight
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    product = Product("Apple", "Green fruit", 50.5, 1)
+    print(f"Информация о продукте: {product.name}, {product.description}, {product.price}, {product.weight}")
