@@ -18,9 +18,10 @@ class BankAccount:
         self.balance += income
 
     def decrease_balance(self, expence: float):
-        self.balance -= expence
-        if self.balance < 0:
+        if self.balance < expence:
             raise ValueError("Отрицательный баланс")
+
+        self.balance -= expence
 
 
 if __name__ == '__main__':
