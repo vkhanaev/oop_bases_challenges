@@ -13,16 +13,16 @@ USERNAMES_IN_DB = ['Alice_2023', 'BobTheBuilder', 'CrazyCoder', 'DataDiva', 'Epi
 
 
 class Form:
-    def __init__(self, username: str, password: str):
+    def __init__(self, username: str, password: str) -> None:
         self.username = username
         self.password = password
 
-    def valid_form(self):
+    def valid_form(self) -> bool:
         return len(self.password) > 8
 
 
 class AuthorizationFormMixin:
-    def valid_form(self):
+    def valid_form(self) -> bool:
         return super().valid_form() and self.username in USERNAMES_IN_DB
 
 
