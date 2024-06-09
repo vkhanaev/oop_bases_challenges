@@ -11,7 +11,6 @@ import dataclasses
 SURNAMES_TO_BAN = ['Vaughn', 'Wilhelm', 'Santaros', 'Porter', 'Smith']
 
 
-@dataclasses.dataclass
 class User:
     name: str
     lastname: str
