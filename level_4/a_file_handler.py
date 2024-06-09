@@ -14,24 +14,36 @@
 """
 import csv
 import json
+from typing import AnyStr
 
 
 class FileHandler:
-    def __init__(self, filename):
+    def __init__(self, filename) -> None:
         self.filename = filename
 
-    def read(self):
+    def read(self) -> str:
         with open(self.filename, 'r') as file:
             return file.read()
 
 
 class JSONHandler(FileHandler):
-    pass  # код писать тут
+    def read(self) -> str:
+        with open(self.filename) as json_file:
+            return json.load(json_file)
 
 
 class CSVHandler(FileHandler):
-    pass  # код писать тут
+    def read(self) -> str:
+        with open(self.filename) as csv_file:
+            rows = csv.reader(csv_file, delimiter=',')
+            lines = [",".join(row) for row in rows]
+            return '\n'.join(lines)
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    t = FileHandler('data\\text.txt')
+    print(t.read())
+    j = JSONHandler('data\\recipes.json')
+    print(j.read())
+    c = CSVHandler('data\\user_info.csv')
+    print(c.read())
