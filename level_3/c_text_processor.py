@@ -11,20 +11,20 @@ import re
 
 
 class TextProcessor:
-    def __init__(self, text):
+    def __init__(self, text) -> None:
         self.text = text
 
-    def to_upper(self):
+    def to_upper(self) -> str:
         return self.text.upper()
 
-    def summarize(self):
+    def summarize(self) -> str:
         return f'Total text length: {len(self.text)}'
 
 
 class AdvancedTextProcessor(TextProcessor):
-    def summarize(self):
+    def summarize(self) -> str:
         words = re.findall(r'\w+', self.text)
-        return f'Total text length: {len(self.text)}, total number of words in the text: {len(words)}'
+        return f'{super().summarize()}, total number of words in the text: {len(words)}'
 
 
 if __name__ == '__main__':

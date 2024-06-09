@@ -12,28 +12,27 @@
 
 
 class UserManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self.usernames = []
 
-    def add_user(self, username):
+    def add_user(self, username) -> None:
         self.usernames.append(username)
 
-    def get_users(self):
+    def get_users(self) -> list[str]:
         return self.usernames
 
 
 class AdminManager(UserManager):
-    def ban_username(self, username):
+    def ban_username(self, username) -> None:
         if username in self.usernames:
             self.usernames.remove(username)
         else:
             print("Такого пользователя не существует.")
-        return self.usernames
 
 
 class SuperAdminManager(AdminManager):
-    def ban_all_users(self):
-        self.usernames = []
+    def ban_all_users(self) -> None:
+        self.usernames.clear()
 
 
 if __name__ == '__main__':
