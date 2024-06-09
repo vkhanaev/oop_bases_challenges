@@ -14,28 +14,30 @@
 """
 import csv
 import json
+from typing import AnyStr
 
 
 class FileHandler:
-    def __init__(self, filename):
+    def __init__(self, filename) -> None:
         self.filename = filename
 
-    def read(self):
+    def read(self) -> str:
         with open(self.filename, 'r') as file:
             return file.read()
 
 
 class JSONHandler(FileHandler):
-    def read(self) -> dict:
+    def read(self) -> str:
         with open(self.filename) as json_file:
             return json.load(json_file)
 
 
 class CSVHandler(FileHandler):
-    def read(self) -> list[dict]:
+    def read(self) -> str:
         with open(self.filename) as csv_file:
-            reader = csv.DictReader(csv_file)
-            return list(reader)
+            rows = csv.reader(csv_file, delimiter=',')
+            lines = [",".join(row) for row in rows]
+            return '\n'.join(lines)
 
 
 if __name__ == '__main__':

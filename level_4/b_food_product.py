@@ -14,26 +14,26 @@ import datetime
 
 
 class Product:
-    def __init__(self, title, quantity):
+    def __init__(self, title, quantity) -> None:
         self.title = title
         self.quantity = quantity
 
-    def get_full_info(self):
+    def get_full_info(self) -> str:
         return f'Product {self.title}, {self.quantity} in stock.'
 
-    def is_available(self):
+    def is_available(self) -> bool:
         return self.quantity > 0
 
 
 class FoodProduct(Product):
-    def __init__(self, title, quantity, expiration_date):
+    def __init__(self, title, quantity, expiration_date) -> None:
         super().__init__(title, quantity)
         self.expiration_date = expiration_date
 
-    def get_full_info(self):
-        return f'Product {self.title}, {self.quantity} in stock, expiration_date: {self.expiration_date}.'
+    def get_full_info(self) -> str:
+        return f'{super().get_full_info()}, expiration_date: {self.expiration_date}.'
 
-    def is_available(self):
+    def is_available(self) -> bool:
         if self.expiration_date < datetime.date.today():
             return False
         return super().is_available()
