@@ -12,19 +12,32 @@
 
 
 class Product:
-    def __init__(self, title: str, price: float):
+    def __init__(self, title: str, price: float) -> None:
         self.title = title
         self.price = price
 
-    def get_product_info(self):
+    def get_product_info(self) -> str:
         return f'Product title: {self.title}, price: {self.price}'
 
 
 class FoodProductMixin:
-    def is_premium_food(self):
+    def is_premium_food(self) -> bool:
         return self.price > 10
 
 
-if __name__ == '__main__':
-    pass  # код писать тут
+class FoodProduct(FoodProductMixin, Product):
+    def get_product_info(self) -> str:
+        premium = ""
+        if self.is_premium_food():
+            premium = " (Premium)"
 
+        info = super().get_product_info()
+        return f'{info}{premium}'
+
+
+if __name__ == '__main__':
+    food_product_1 = FoodProduct("Apple", 5)
+    print(food_product_1.get_product_info())
+
+    food_product_2 = FoodProduct("Bread", 15)
+    print(food_product_2.get_product_info())
